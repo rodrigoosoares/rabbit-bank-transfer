@@ -1,0 +1,27 @@
+version: '2'
+
+networks:
+  bank-transfer-network:
+    driver: bridge
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "123"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: transaction-admin
+      MONGO_INITDB_ROOT_PASSWORD: 123
+    networks:
+      - bank-transfer-network

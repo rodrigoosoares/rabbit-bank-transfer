@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_CONNECTION_URL:mongodb://transaction-admin:123@localhost:27017}
+      authentication-database: admin
+      database: Transactions
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "admin"
+    password: "123"
+
+rabbitmq:
+  queues:
+    prefix: transactions-processor
+    operations:
+      - transfer
