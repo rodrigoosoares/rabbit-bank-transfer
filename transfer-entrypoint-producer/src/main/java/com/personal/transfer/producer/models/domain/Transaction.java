@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
-
 @Getter
 @Setter
 @Builder
@@ -16,6 +14,6 @@ public class Transaction {
     private String sourceId;
     private String destinationId;
     private Long amount;
-    private Instant timestamp;
+    private Long timestamp;
     private TransactionType type;
 }

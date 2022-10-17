@@ -1,10 +1,11 @@
 package com.personal.transfer.producer.converters;
 
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
 import com.personal.transfer.producer.models.domain.Transaction;
 import com.personal.transfer.producer.models.domain.TransactionType;
 import com.personal.transfer.producer.models.entrypoint.TransactionRequest;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionRequestToTransactionConverter implements Converter<TransactionRequest, Transaction> {
@@ -16,7 +17,7 @@ public class TransactionRequestToTransactionConverter implements Converter<Trans
                 .sourceId(transactionRequest.getSourceId())
                 .destinationId(transactionRequest.getDestinationId())
                 .amount(transactionRequest.getAmount())
-                .timestamp(transactionRequest.getTimestamp())
+                .timestamp(transactionRequest.getTimestamp().toEpochMilli())
                 .type(TransactionType.valueOf(transactionRequest.getType()))
                 .build();
 
